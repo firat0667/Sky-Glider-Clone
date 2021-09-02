@@ -166,7 +166,7 @@ public class PlayerControlScript : MonoBehaviour
     {
         playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x, bounceSpeed, playerRigidbody.velocity.z);
     }
-    //call these to bounce
+    
     private void BounceOnCube()
     {
         BouncePlayer(cubeSpeed);
@@ -238,7 +238,7 @@ public class PlayerControlScript : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Ground"))
         {
-            //gameManagerScript.GameOver();
+             gameManagerScript.GameOver();
             playerRigidbody.velocity = Vector3.zero;
             BackMusic.SetActive(false);
             TryAgainMusic.SetActive(true);
@@ -246,7 +246,7 @@ public class PlayerControlScript : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("finish"))
         {
-
+            gameManagerScript.EndGame();
             LevelCompletedMusic.SetActive(true);
             BackMusic.SetActive(false);
         }

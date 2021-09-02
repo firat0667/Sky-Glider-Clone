@@ -22,6 +22,7 @@ public class SwipeStick : MonoBehaviour
     private void Awake()
     {
         stickcontrollerScript = this.GetComponent<StickControll>();
+        stickcontrollerScript = GameObject.FindGameObjectWithTag("Stick").GetComponent<StickControll>();
     }
 
     // Update is called once per frame
@@ -87,5 +88,9 @@ public class SwipeStick : MonoBehaviour
         {
             stickcontrollerScript.Reverse();
         }
+    }
+     public void Exit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        stickcontrollerScript.ReleaseFinished();
     }
 }

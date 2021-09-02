@@ -9,6 +9,7 @@ public class StickControll : MonoBehaviour
     private PlayerControlScript playerControll;
     private int stateHash;
     private bool StickPull = false;
+    
 
 
 
