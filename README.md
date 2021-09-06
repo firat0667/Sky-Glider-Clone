@@ -13,7 +13,7 @@ it takes off and makes a gliding movement.
 We determine its direction with the mouse. We're trying to bring it over mushroom and  log
 log Bounce value=30,mushroom Bounce value=15;
 
- # info: dont click mause when passing through the Rings
+ # info: dont click mause when passing through the Checkpoint
 
 
 # unity version 2020.3.8f1
