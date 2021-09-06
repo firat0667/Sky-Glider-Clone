@@ -7,7 +7,8 @@ public class CamScript : MonoBehaviour
     
     public Transform tCamPosition;
     public Transform targetLookPosition;
-    public Transform lookPosition; 
+    public Transform lookPosition;
+ 
     
 
     private float followSpeed = 3f;
@@ -22,6 +23,8 @@ public class CamScript : MonoBehaviour
     {
         transform.LookAt(lookPosition); 
     }
+   
+        
 
 
     void FixedUpdate()
@@ -64,5 +67,7 @@ public class CamScript : MonoBehaviour
     {
         this.transform.parent = tCamPosition;
         Following = true;
+        
     }
+    
 }

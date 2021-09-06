@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerControlScript : MonoBehaviour
 {
@@ -14,9 +16,13 @@ public class PlayerControlScript : MonoBehaviour
     public GameObject JumpMusic;
     public GameObject TryAgainMusic;
     public GameObject LevelCompletedMusic;
+    public GameObject TenPointText;
+
     public Animator playerAnimator; 
     public Transform body; 
     private Rigidbody playerRigidbody;
+    
+    
     private Vector3 forceVelocity;
 
     private bool Fly = false;
@@ -24,14 +30,19 @@ public class PlayerControlScript : MonoBehaviour
     private bool WingAngle = true;
 
     private const float Gravity= 0.2f;
-    private const float ThrowingSpeed = 15f;
-    private const float HRotationSpeed = 45;
-    private const float FRotationSpeed = 800f;
+    private const float ThrowingSpeed = 50f;
+    private const  float HRotationSpeed = 45;
+    private const  float FRotationSpeed = 800f;
     private float cubeSpeed = 30f;
     private float cylinderSpeed = 15f;
-    private const float wingAngle = 40f;
+    private const float wingAngle = 45f;
     private const float BodyAngle = 90f;
     private const float MaxWingAngle = 45f;
+
+    public TextMeshProUGUI PointText;
+    private int score;
+
+
 
 
 
@@ -42,13 +53,21 @@ public class PlayerControlScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
         JumpMusic.SetActive(false);
     }
+    IEnumerator PointActive()
+    {
+        TenPointText.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        TenPointText.SetActive(false);
+    }
 
     private void Start()
-    {
+    {   
         BackMusic.SetActive(true);
         JumpMusic.SetActive(false);
         TryAgainMusic.SetActive(false);
         LevelCompletedMusic.SetActive(false);
+        TenPointText.SetActive(false);
+        score = 0;
     }
 
 
@@ -65,6 +84,7 @@ public class PlayerControlScript : MonoBehaviour
     
     void Update()
     {
+        Score();
         RotateBody();
     }
 
@@ -88,6 +108,7 @@ public class PlayerControlScript : MonoBehaviour
       Camera.main.GetComponent<CamScript>().ReadyFollow(); 
         swipePlayerScript.enabled = true;
     }
+  
     public void FallAndFly() 
     {
         if (!Fall)
@@ -99,6 +120,7 @@ public class PlayerControlScript : MonoBehaviour
             playerAnimator.SetBool("Flying", false);
             playerAnimator.SetBool("Rotating", true);
         }
+        
         else
         {
             
@@ -183,18 +205,13 @@ public class PlayerControlScript : MonoBehaviour
 
 
     }
-    private void BounceFan()
+    private void Point()
     {
-        player.GetComponent<Rigidbody>().AddForce(Vector3.up * 100f);
-
-       
-
+        Debug.Log("point");
+        score = score + 10;
     }
-    private void BounceMagnet()
-    {
-        player.GetComponent<Rigidbody>().AddForce(Vector3.down*50f);
-       
-    }
+  
+   
    
     private void OnTriggerEnter(Collider other)
     {
@@ -211,18 +228,26 @@ public class PlayerControlScript : MonoBehaviour
             BounceOnCylinder();
             StartCoroutine(musicActive());
         }
-        else if (other.CompareTag("fan"))
+        else if (other.CompareTag("Point"))
         {
-            BounceFan();
+           Point();
             StartCoroutine(musicActive());
-
+            StartCoroutine(PointActive());
+            
         }
-        else if (other.CompareTag("Magnet"))
-        {
-            BounceMagnet();
+       
 
-        }
 
+
+        /*  else if (other.gameObject.CompareTag("Stick"))
+          {
+              Fall = false;
+              Fly = false;
+              playerAnimator.SetBool("Rotating", false);
+              playerAnimator.SetBool("Flying", false);
+              WingAngle = false;
+          }
+          */
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -238,8 +263,18 @@ public class PlayerControlScript : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Ground"))
         {
-             gameManagerScript.GameOver();
+            Fall = false;
+            Fly = false;
+            playerAnimator.SetBool("Rotating", false);
+            playerAnimator.SetBool("Flying", false);
+            WingAngle = false;
+            
+
+
+
+            gameManagerScript.GameOver();
             playerRigidbody.velocity = Vector3.zero;
+            
             BackMusic.SetActive(false);
             TryAgainMusic.SetActive(true);
 
@@ -250,7 +285,14 @@ public class PlayerControlScript : MonoBehaviour
             LevelCompletedMusic.SetActive(true);
             BackMusic.SetActive(false);
         }
+       
+
 
     }
+    private void Score()
+    {
+        PointText.text = score.ToString();
+    }
+
 }
 
