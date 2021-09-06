@@ -12,6 +12,7 @@ when we click on the button, and after a while, when we release it,
 it takes off and makes a gliding movement.
 We determine its direction with the mouse. We're trying to bring it over mushroom and  log
 log Bounce value=30,mushroom Bounce value=15;
+info: dont click mause when passing through the Rings
 
 
 # unity version 2020.3.8f1
