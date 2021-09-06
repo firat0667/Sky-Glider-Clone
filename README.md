@@ -1,9 +1,10 @@
 # Sky-Glider-Clone
-1) Rocketman-PlayerControl and StickControl Added 29.08.2021
-2) Cube and Cylinder Platform Added  31.08.2021
-3) Finishlane and GameMusic Added 01.09.2021
-4) UIcontroll and GameManager Added 02.09.2021
-5) Canyon map,Checkpoint,added. Camera bug fixed,player speed augmented,gravity reduced  05.09.2021
+1) Rocketman-PlayerControl and StickControl Added--------------------------------------- 29.08.2021
+2) Cube and Cylinder Platform Added------------------------------------------------------31.08.2021
+3) Finishlane and GameMusic Added--------------------------------------------------------01.09.2021
+4) UIcontroll and GameManager Added----------------------------------------------------- 02.09.2021
+5) Canyon map,Checkpoint,added. Camera bug fixed,player speed augmented,gravity reduced--05.09.2021
+6) Beginnig SwipeStick bug fixed,PlatformGenarator added---------------------------------06.09.2021
 
 
 
