@@ -5,6 +5,7 @@
 4) UIcontroll and GameManager Added----------------------------------------------------- 02.09.2021
 5) Canyon map,Checkpoint,added. Camera bug fixed,player speed augmented,gravity reduced--05.09.2021
 6) Beginnig SwipeStick bug fixed,PlatformGenarator added---------------------------------06.09.2021
+7) apk.Build and windows.build(not working)----------------------------------------------07.09.2021
 
 
 
